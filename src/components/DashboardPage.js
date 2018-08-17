@@ -1,9 +1,29 @@
 import React from 'react';
+import CreateLists from './CreateLists';
+import DisplayLists from './DisplayLists';
 
-const DashboardPage = () => (
-  <div>
-    Dashboard page content
-  </div>
-);
+
+
+export class DashboardPage extends React.Component{
+  constructor(props){
+    super(props);
+
+    
+  }
+
+
+  render(){
+    return(
+ 
+      <div>
+          <br/>
+          <CreateLists></CreateLists>
+          <br />
+          <DisplayLists></DisplayLists>
+      </div>
+    );
+  };
+}; 
 
 export default DashboardPage;
+

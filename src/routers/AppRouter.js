@@ -7,6 +7,7 @@ import LoginPage from '../components/LoginPage';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
+
 export const history = createHistory();
 
 const AppRouter = () => (
@@ -21,4 +22,5 @@ const AppRouter = () => (
   </Router>
 );
 
-export default AppRouter;
+ 
+ export default AppRouter;
