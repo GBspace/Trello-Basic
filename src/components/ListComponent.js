@@ -14,8 +14,6 @@ export class ListComponent extends React.Component{
     }
 
     deleteList = (e)=>{
-        // console.log("this.props.list --> " ,this.props.list);
-        // console.log("Removing " , this.props.id);
         this.props.removeCardsFromList({listId: this.props.id});
     };
 
@@ -43,17 +41,17 @@ export class ListComponent extends React.Component{
    
         return(
             <div className="list-body">
-            <div className="list-item" 
-                 onDragOver = {(e)=>{this.onDragOver(e)}}
-                 onDrop={(e)=>{this.onDropHandler(e,this.props.id)}}
-                 onDragEnter={(e)=>{this.onDragEnter(e)}}>
-             
-                <div className="list-header"> { this.props.listName} </div> 
-                <br/>
-                <AddCard listId={this.props.id}></AddCard>
-                <br/>
-                <button onClick={this.deleteList}>Delete</button>
-            </div>
+                <div className="list-item" 
+                    onDragOver = {(e)=>{this.onDragOver(e)}}
+                    onDrop={(e)=>{this.onDropHandler(e,this.props.id)}}
+                    onDragEnter={(e)=>{this.onDragEnter(e)}}>
+                
+                    <div className="list-header"> { this.props.listName} </div> 
+                    <br/>
+                    <AddCard listId={this.props.id}></AddCard>
+                    <br/>
+                    <button onClick={this.deleteList}>Delete</button>
+                </div>
             </div>
         );
     };

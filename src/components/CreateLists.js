@@ -7,7 +7,8 @@ export class CreateLists extends React.Component{
         super(props);
 
         this.state = {
-            listName : ''
+            listName : '',
+            error: ''
         };
     };
 
@@ -22,24 +23,37 @@ export class CreateLists extends React.Component{
 
     onCreateList = (e)=>{
         e.preventDefault();
-        console.log("this.state.list Name ", this.state.listName);
-        
-        this.props.addListName({listName: this.state.listName})
+        (this.state.listName === '') ? 
         this.setState(()=>({
-            listName : ''
-        }));
-        
+            error: 'Please enter a listname'
+        })): 
+        (
+            this.props.addListName({listName: this.state.listName}),
+            this.setState(()=>({
+                listName : '',
+                error: ''
+            }))
+        )
     };
 
 
     render(){
         return(
-            <div className="add-list">
-                <form onSubmit = {this.onCreateList} className="form">
-                    <input className="textInput" type="text" value={this.state.listName} onChange={this.onListNameChange}/>
-                    <button> Create List </button>
-                </form>
-            </div>
+            
+                <div className="add-list-container">
+                    <div className="add-list">
+                        <form onSubmit = {this.onCreateList} className="form">
+                            <input className="textInput" type="text" value={this.state.listName} onChange={this.onListNameChange}/>
+                            <button> Create List </button>
+                        </form>
+                    </div>
+                    <div>
+                        {
+                            (this.state.error) && <span> {this.state.error}</span>
+                        }
+                    </div>
+                </div>
+            
         );
     };
 

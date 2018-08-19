@@ -4,9 +4,11 @@
   color: $grey;
   // display: flex;
   // flex-direction: column;
-  justify-content: space-between;
+  // justify-content: space-between;
   
   padding: $s-size $m-size;
+  width: -webkit-fill-available;
+  text-align: center;
 }
 
 .list-body {
@@ -90,7 +92,7 @@
   }
 }
 
-.card-componenet{
+.card-component{
   display: flex;
   flex-direction: row;
   

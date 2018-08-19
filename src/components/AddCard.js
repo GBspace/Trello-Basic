@@ -25,24 +25,30 @@ export class AddCard extends React.Component{
 
     onSubmit = (e)=>{
         e.preventDefault();
-        // console.log("Adding card " ,this.state.card);
-        this.props.addCard({cardInfo: this.state.card, listId: this.props.listId});
+        (this.state.card !== '') ?
+        (this.props.addCard({cardInfo: this.state.card, listId: this.props.listId}),
         this.setState(()=>({
-            card: ''
-        }));
+            card: '',
+            error: ''
+        }))) : (
+            this.setState(()=>({
+                error: 'Please enter a card name'
+            }))
+        );
     };
 
     render(){
-        // console.log("Id of the list is : " , this.props.listId);
-        // console.log("Selected card entries are -->" , this.props.selectCard);
+
         return(
-            <div>
+            <div className="add-list-container">
                 <form onSubmit={this.onSubmit} className="form">
                     <input type="text" value={this.state.card} onChange={this.onCardChange}/> 
                     <button> Add Card </button>
                 </form>
                 {
-                    
+                    (this.state.error) && <div>{this.state.error}</div>
+                }
+                {
                     Object.entries(this.props.selectCard).map((card)=>{
                         return <CardComponent key={card[0]} id={card[0]} cardName={card[1]}></CardComponent>
                     })

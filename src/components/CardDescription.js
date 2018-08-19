@@ -24,18 +24,26 @@ export class CardDescription extends React.Component{
         }));
     };
 
+    
+
     updateDescription = (e)=>{
         e.preventDefault();
-        this.props.updateDescription({
-            cardId:this.state.id,
-            cardDescription: this.state.description
-        });
-
-        this.setState(()=>({
-            description: '',
-            displayComponent: false
-        }));
-
+        (this.state.description !== '') ?
+        (
+            this.props.updateDescription({
+                cardId:this.state.id,
+                cardDescription: this.state.description
+            }),
+            this.setState(()=>({
+                description: '',
+                error: '',
+                displayComponent:false
+            }))
+        )
+        :
+        (this.setState(()=>({
+            error: 'Please provide description'
+        })));
     };
 
 
@@ -44,15 +52,22 @@ export class CardDescription extends React.Component{
         
        
         return(
-                <div>
-                   {(this.state.displayComponent) && 
-                    (<form onSubmit={this.updateDescription} className="form">
-                        <input type="text" placeholder="Update description here" 
-                            value={this.state.description} 
-                            onChange={this.onDescriptionChange} />
-                        <button>Update Description</button>
-                    </form>)
-                   }
+                <div className="CardDescription">
+                    {   (this.state.displayComponent) &&
+                        (<form onSubmit={this.updateDescription} className="form">
+                            <input type="text" placeholder="Update description here" 
+                                value={this.state.description} 
+                                onChange={this.onDescriptionChange} />
+                            <button>Update Description</button>
+                        </form>)
+                    }    
+                    {    
+                    
+                    (this.state.error) && <p> Please enter description</p>
+
+                    }
+
+
                 </div>
             ); 
     };
@@ -66,4 +81,3 @@ const mapDispatchToProps = (dispatch)=>({
 });
 
 export default connect(undefined,mapDispatchToProps)(CardDescription);
-// export default CardDescription;

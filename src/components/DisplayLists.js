@@ -10,9 +10,6 @@ export class DisplayLists extends React.Component{
     
     render(){
         let listDetailsValues = Object.values(this.props.list.byId);
-        // console.log("listDetailsValues " , listDetailsValues);
-        
-
         return(
             <div className="list-box">
                 {

@@ -7,8 +7,6 @@ import DisplayLists from './DisplayLists';
 export class DashboardPage extends React.Component{
   constructor(props){
     super(props);
-
-    
   }
 
 
